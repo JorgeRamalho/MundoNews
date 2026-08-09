@@ -1,1 +1,1 @@
-import '../react/main.tsx';
+import '../src/main.tsx';

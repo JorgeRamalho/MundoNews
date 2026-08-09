@@ -12,9 +12,13 @@ dist/
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
+.vscode/*
+!.vscode/settings.json
 *.swp
 *.swo
+
+# Live Server entry (gerado no build)
+/index.html
 
 # Logs
 npm-debug.log*
@@ -23,3 +27,9 @@ yarn-error.log*
 
 # Cursor / ferramentas locais
 .cursor/
+
+# Testes Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

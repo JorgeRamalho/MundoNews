@@ -18,10 +18,10 @@
     "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@react/*": ["react/*"],
-      "@css/*": ["css3/*"],
-      "@js/*": ["javascript/*"]
+      "@/*": ["src/*"],
+      "@js/*": ["src/lib/*"],
+      "@css/*": ["src/styles/*"]
     }
   },
-  "include": ["react", "javascript", "vite.config.ts", "html5", "javascript/editorial.ts"]
+  "include": ["src", "vite.config.ts", "html5", "tests", "playwright.config.ts"]
 }

@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none" role="img" aria-label="Mundo News — A verdade em primeiro lugar">
+  <!-- Fundo -->
   <rect width="1200" height="630" fill="#1a1a2e"/>
   <rect width="1200" height="6" fill="#c41e3a"/>
-  <!-- Globo decorativo -->
-  <circle cx="200" cy="315" r="120" fill="none" stroke="#e8b923" stroke-width="2" opacity="0.3"/>
-  <circle cx="200" cy="315" r="80" fill="none" stroke="#e8b923" stroke-width="1.5" opacity="0.5"/>
-  <ellipse cx="200" cy="315" rx="40" ry="80" fill="none" stroke="#e8b923" stroke-width="1" opacity="0.5"/>
-  <line x1="80" y1="315" x2="320" y2="315" stroke="#e8b923" stroke-width="1" opacity="0.5"/>
-  <!-- Logo central -->
-  <g transform="translate(380, 180)">
-    <circle cx="60" cy="60" r="55" fill="#c41e3a" opacity="0.15"/>
-    <circle cx="60" cy="60" r="45" fill="none" stroke="#e8b923" stroke-width="2"/>
-    <ellipse cx="60" cy="60" rx="20" ry="45" fill="none" stroke="#e8b923" stroke-width="1.5"/>
-    <line x1="15" y1="60" x2="105" y2="60" stroke="#e8b923" stroke-width="1.5"/>
-    <rect x="78" y="35" width="30" height="40" rx="4" fill="#c41e3a"/>
-    <line x1="84" y1="44" x2="102" y2="44" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-    <line x1="84" y1="52" x2="102" y2="52" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-    <line x1="84" y1="60" x2="96" y2="60" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-  </g>
-  <text x="560" y="280" font-family="Georgia, serif" font-size="72" font-weight="900" fill="#c41e3a">Mundo News</text>
-  <text x="560" y="340" font-family="Arial, sans-serif" font-size="28" fill="#e8b923">=ð A verdade em primeiro lugar</text>
-  <text x="560" y="400" font-family="Arial, sans-serif" font-size="22" fill="#ffffff" opacity="0.8">< Brasil  "  < Mundo  "  =¬ Opinião  "  =Ä Artigos</text>
-  <text x="560" y="450" font-family="Arial, sans-serif" font-size="18" fill="#ffffff" opacity="0.6">=4 Cobertura em tempo real  "  =á Correspondentes globais</text>
   <rect y="624" width="1200" height="6" fill="#c41e3a"/>
+  <!-- Padrão decorativo -->
+  <circle cx="1050" cy="120" r="200" fill="#c41e3a" opacity="0.08"/>
+  <circle cx="150" cy="520" r="160" fill="#e8b923" opacity="0.06"/>
+  <!-- Ícone central -->
+  <g transform="translate(520, 175)">
+    <circle cx="80" cy="80" r="70" fill="none" stroke="#e8b923" stroke-width="3"/>
+    <ellipse cx="80" cy="80" rx="30" ry="70" fill="none" stroke="#e8b923" stroke-width="2"/>
+    <line x1="10" y1="80" x2="150" y2="80" stroke="#e8b923" stroke-width="2"/>
+    <rect x="115" y="45" width="50" height="65" rx="4" fill="#c41e3a"/>
+    <line x1="125" y1="60" x2="155" y2="60" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="125" y1="75" x2="155" y2="75" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="125" y1="90" x2="145" y2="90" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <!-- Título -->
+  <text x="600" y="400" text-anchor="middle" font-family="Georgia, 'Merriweather', serif" font-size="72" font-weight="900" fill="#ffffff">Mundo News</text>
+  <text x="600" y="460" text-anchor="middle" font-family="Arial, 'Source Sans 3', sans-serif" font-size="28" font-weight="600" fill="#e8b923" letter-spacing="0.06em">A VERDADE EM PRIMEIRO LUGAR</text>
+  <text x="600" y="520" text-anchor="middle" font-family="Arial, 'Source Sans 3', sans-serif" font-size="22" fill="#a0a0b8">Notícias do Brasil e do mundo em tempo real</text>
+  <!-- Barra inferior -->
+  <rect x="450" y="555" width="300" height="4" rx="2" fill="#c41e3a"/>
 </svg>
