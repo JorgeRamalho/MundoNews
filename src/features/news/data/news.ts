@@ -510,3 +510,26 @@ export function getLatestArticles(limit = 10): NewsArticle[] {
 export function getSportsArticles(limit = 6): NewsArticle[] {
   return sortByDate(articles.filter((a) => a.category === 'esporte')).slice(0, limit);
 }
+
+export function searchArticles(query: string, limit = 50): NewsArticle[] {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) return [];
+
+  const terms = normalized.split(/\s+/).filter(Boolean);
+
+  return sortByDate(
+    articles.filter((article) => {
+      const haystack = [
+        article.title,
+        article.excerpt,
+        article.author,
+        article.authorRole,
+        ...article.tags,
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      return terms.every((term) => haystack.includes(term));
+    }),
+  ).slice(0, limit);
+}

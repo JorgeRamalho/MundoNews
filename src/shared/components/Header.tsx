@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { NAV_LINKS_BRANDED } from '@js/brand';
 import Logo from './Logo';
+import SearchBar from './SearchBar';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,14 +31,18 @@ export default function Header() {
           ))}
         </nav>
 
-        <button
-          className="header__menu-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? '✕' : '☰'}
-        </button>
+        <div className="header__actions">
+          <SearchBar />
+          <ThemeToggle />
+          <button
+            className="header__menu-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? '✕' : '☰'}
+          </button>
+        </div>
       </div>
     </header>
   );

@@ -3,6 +3,7 @@ import Layout from './shared/components/Layout';
 import HomePage from './features/news/pages/HomePage';
 import CategoryPage from './features/news/pages/CategoryPage';
 import ArticlePage from './features/news/pages/ArticlePage';
+import SearchPage from './features/news/pages/SearchPage';
 import AboutPage from './features/about/pages/AboutPage';
 import NotFoundPage from './shared/pages/NotFoundPage';
 
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="opiniao" element={<CategoryPage category="opiniao" />} />
         <Route path="esporte" element={<CategoryPage category="esporte" />} />
         <Route path="artigos" element={<CategoryPage category="artigo" />} />
+        <Route path="busca" element={<SearchPage />} />
         <Route path="noticia/:slug" element={<ArticlePage />} />
         <Route path="sobre" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />

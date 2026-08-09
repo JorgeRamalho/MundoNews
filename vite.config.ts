@@ -8,7 +8,63 @@ import { articles } from './src/features/news/data/news';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SITE_URL = 'https://mundonwes.netlify.app';
 
-const STATIC_ROUTES = ['/', '/brasil', '/mundo', '/opiniao', '/esporte', '/artigos', '/sobre'];
+const STATIC_ROUTES = ['/', '/brasil', '/mundo', '/opiniao', '/esporte', '/artigos', '/busca', '/sobre'];
+
+function escapeXml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+function buildRssXml(): string {
+  const sorted = [...articles].sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
+
+  const items = sorted
+    .slice(0, 30)
+    .map(
+      (article) => `    <item>
+      <title>${escapeXml(article.title)}</title>
+      <link>${SITE_URL}/noticia/${article.slug}</link>
+      <guid isPermaLink="true">${SITE_URL}/noticia/${article.slug}</guid>
+      <pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>
+      <description>${escapeXml(article.excerpt)}</description>
+    </item>`,
+    )
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mundo News</title>
+    <link>${SITE_URL}</link>
+    <description>Notícias do Brasil e do mundo em tempo real. A verdade em primeiro lugar.</description>
+    <language>pt-BR</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+${items}
+  </channel>
+</rss>
+`;
+}
+
+function rssPlugin(): Plugin {
+  return {
+    name: 'generate-rss',
+    buildStart() {
+      const xml = buildRssXml();
+      writeFileSync(resolve(__dirname, 'public/feed.xml'), xml, 'utf-8');
+    },
+    closeBundle() {
+      const xml = buildRssXml();
+      writeFileSync(resolve(__dirname, 'dist/feed.xml'), xml, 'utf-8');
+    },
+  };
+}
 
 function buildSitemapXml(): string {
   const urls = [
@@ -114,7 +170,7 @@ function liveServerEntry(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), liveServerEntry(), sitemapPlugin(), liveServerRootIndex()],
+  plugins: [react(), liveServerEntry(), sitemapPlugin(), rssPlugin(), liveServerRootIndex()],
   root: 'html5',
   base: '/',
   publicDir: resolve(__dirname, 'public'),

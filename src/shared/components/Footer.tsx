@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { BRAND, BRAND_EMOJI, NAV_LINKS_BRANDED } from '@js/brand';
 import Logo from './Logo';
+import NewsletterSignup from './NewsletterSignup';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,6 +10,8 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
+        <NewsletterSignup />
+
         <div className="footer__grid">
           <div>
             <Logo variant="footer" showTagline={false} />
@@ -37,6 +40,7 @@ export default function Footer() {
             <h3 className="footer__heading">{BRAND_EMOJI.email} Contato</h3>
             <a href={`mailto:${BRAND.email}`} className="footer__link">{BRAND.email}</a>
             <span className="footer__link">{BRAND_EMOJI.location} Curitiba — Paraná</span>
+            <a href="/feed.xml" className="footer__link">{BRAND_EMOJI.news} Feed RSS</a>
           </div>
         </div>
 

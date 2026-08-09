@@ -34,6 +34,9 @@
 - Horóscopo interativo
 - Bloco editorial de credibilidade jornalística
 - Layout responsivo (mobile, tablet, desktop)
+- **Busca full-text** por título, resumo, autor e tags
+- **Dark mode** com preferência salva no navegador
+- **Feed RSS** (`/feed.xml`) e newsletter no footer
 - PWA manifest e ícones
 
 ## Como executar
@@ -95,7 +98,19 @@ Documentação detalhada: [docs/MAPEAMENTO-ESTRUTURA.md](docs/MAPEAMENTO-ESTRUTU
 | `npm run liveserver` | Build com watch para Live Server |
 | `npm test` | Testes E2E com Playwright |
 | `npm run test:ui` | Playwright UI mode |
+| `npm run test:report` | Abre relatório HTML dos testes |
 | `npm run tunnel` | Túnel Cloudflare para compartilhar dev |
+
+## Analytics (opcional)
+
+Copie `.env.example` para `.env` e configure:
+
+| Variável | Descrição |
+|----------|-----------|
+| `VITE_PLAUSIBLE_DOMAIN` | Domínio no Plausible |
+| `VITE_GA_MEASUREMENT_ID` | ID de medição do Google Analytics 4 |
+
+Sem essas variáveis, nenhum script de analytics é carregado.
 
 ## Identidade visual
 
