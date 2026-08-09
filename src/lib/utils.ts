@@ -11,9 +11,9 @@ export function formatDate(dateString: string): string {
   });
 }
 
-export function formatDateTime(dateString: string): string {
+export function formatDateTime(dateString: string, locale = 'pt-BR'): string {
   const date = new Date(dateString);
-  return date.toLocaleString('pt-BR', {
+  return date.toLocaleString(locale, {
     day: '2-digit',
     month: 'short',
     year: 'numeric',

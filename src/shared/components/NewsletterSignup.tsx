@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { BRAND_EMOJI } from '@js/brand';
+import { useTranslation } from 'react-i18next';
 
 const STORAGE_KEY = 'mundonews-newsletter';
 
@@ -14,6 +14,7 @@ export default function NewsletterSignup() {
     return localStorage.getItem(STORAGE_KEY) === 'true';
   });
   const [error, setError] = useState('');
+  const { t } = useTranslation();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,7 +22,7 @@ export default function NewsletterSignup() {
 
     const trimmed = email.trim();
     if (!isValidEmail(trimmed)) {
-      setError('Informe um e-mail válido.');
+      setError(t('newsletter.invalidEmail'));
       return;
     }
 
@@ -34,39 +35,32 @@ export default function NewsletterSignup() {
   if (subscribed) {
     return (
       <div className="newsletter newsletter--success" role="status">
-        <p>
-          {BRAND_EMOJI.email} Obrigado! Você está inscrito para receber as principais notícias do
-          Mundo News.
-        </p>
+        <p>{t('newsletter.success')}</p>
       </div>
     );
   }
 
   return (
     <div className="newsletter">
-      <h3 className="newsletter__title">
-        {BRAND_EMOJI.email} Newsletter
-      </h3>
-      <p className="newsletter__text">
-        Receba os destaques do dia no seu e-mail. Sem spam — só fatos verificados.
-      </p>
+      <h3 className="newsletter__title">{t('newsletter.title')}</h3>
+      <p className="newsletter__text">{t('newsletter.text')}</p>
       <form className="newsletter__form" onSubmit={handleSubmit} noValidate>
         <label htmlFor="newsletter-email" className="sr-only">
-          E-mail para newsletter
+          {t('newsletter.emailLabel')}
         </label>
         <input
           id="newsletter-email"
           className="newsletter__input"
           type="email"
           name="email"
-          placeholder="seu@email.com"
+          placeholder={t('newsletter.placeholder')}
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
           autoComplete="email"
         />
         <button type="submit" className="newsletter__btn">
-          Inscrever-se
+          {t('newsletter.submit')}
         </button>
       </form>
       {error && (
@@ -75,9 +69,9 @@ export default function NewsletterSignup() {
         </p>
       )}
       <p className="newsletter__hint">
-        Ou assine o{' '}
+        {t('newsletter.orRss')}{' '}
         <a href="/feed.xml" className="newsletter__rss-link">
-          feed RSS
+          {t('newsletter.rssLink')}
         </a>
         .
       </p>

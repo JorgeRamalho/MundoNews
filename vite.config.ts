@@ -3,12 +3,15 @@ import react from '@vitejs/plugin-react';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { writeFileSync } from 'node:fs';
-import { articles } from './src/features/news/data/news';
+import type { NewsArticle } from './src/shared/types';
+import { syncCmsArticles } from './scripts/cms/sync';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SITE_URL = 'https://mundonwes.netlify.app';
 
 const STATIC_ROUTES = ['/', '/brasil', '/mundo', '/opiniao', '/esporte', '/artigos', '/busca', '/sobre'];
+
+let buildArticles: NewsArticle[] = [];
 
 function escapeXml(text: string): string {
   return text
@@ -19,7 +22,7 @@ function escapeXml(text: string): string {
     .replace(/'/g, '&apos;');
 }
 
-function buildRssXml(): string {
+function buildRssXml(articles: NewsArticle[]): string {
   const sorted = [...articles].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
@@ -52,21 +55,7 @@ ${items}
 `;
 }
 
-function rssPlugin(): Plugin {
-  return {
-    name: 'generate-rss',
-    buildStart() {
-      const xml = buildRssXml();
-      writeFileSync(resolve(__dirname, 'public/feed.xml'), xml, 'utf-8');
-    },
-    closeBundle() {
-      const xml = buildRssXml();
-      writeFileSync(resolve(__dirname, 'dist/feed.xml'), xml, 'utf-8');
-    },
-  };
-}
-
-function buildSitemapXml(): string {
+function buildSitemapXml(articles: NewsArticle[]): string {
   const urls = [
     ...STATIC_ROUTES.map((path) => ({
       loc: `${SITE_URL}${path === '/' ? '' : path}`,
@@ -100,16 +89,29 @@ ${body}
 `;
 }
 
-function sitemapPlugin(): Plugin {
+function contentPipelinePlugin(): Plugin {
+  async function refreshArticles(): Promise<void> {
+    await syncCmsArticles(__dirname);
+    const { getAllArticlesForBuild } = await import('./src/features/news/data/article-repository');
+    buildArticles = getAllArticlesForBuild();
+  }
+
+  function writeDiscoveryFiles(): void {
+    const sitemap = buildSitemapXml(buildArticles);
+    const rss = buildRssXml(buildArticles);
+    writeFileSync(resolve(__dirname, 'public/sitemap.xml'), sitemap, 'utf-8');
+    writeFileSync(resolve(__dirname, 'public/feed.xml'), rss, 'utf-8');
+  }
+
   return {
-    name: 'generate-sitemap',
-    buildStart() {
-      const xml = buildSitemapXml();
-      writeFileSync(resolve(__dirname, 'public/sitemap.xml'), xml, 'utf-8');
+    name: 'content-pipeline',
+    async buildStart() {
+      await refreshArticles();
+      writeDiscoveryFiles();
     },
-    closeBundle() {
-      const xml = buildSitemapXml();
-      writeFileSync(resolve(__dirname, 'dist/sitemap.xml'), xml, 'utf-8');
+    async closeBundle() {
+      writeFileSync(resolve(__dirname, 'dist/sitemap.xml'), buildSitemapXml(buildArticles), 'utf-8');
+      writeFileSync(resolve(__dirname, 'dist/feed.xml'), buildRssXml(buildArticles), 'utf-8');
     },
   };
 }
@@ -170,7 +172,7 @@ function liveServerEntry(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), liveServerEntry(), sitemapPlugin(), rssPlugin(), liveServerRootIndex()],
+  plugins: [contentPipelinePlugin(), react(), liveServerEntry(), liveServerRootIndex()],
   root: 'html5',
   base: '/',
   publicDir: resolve(__dirname, 'public'),

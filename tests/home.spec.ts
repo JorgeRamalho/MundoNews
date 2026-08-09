@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { usePortugueseLocale } from './test-utils';
 
 test.describe('Home', () => {
   test.beforeEach(async ({ page }) => {
+    await usePortugueseLocale(page);
     await page.goto('/');
   });
 

@@ -1,9 +1,13 @@
 import { test, expect } from '@playwright/test';
+import { usePortugueseLocale } from './test-utils';
 
 test.describe('Fase 5 — Produto', () => {
+  test.beforeEach(async ({ page }) => {
+    await usePortugueseLocale(page);
+  });
+
   test('alterna tema escuro', async ({ page }) => {
     await page.goto('/');
-
     await page.getByRole('button', { name: 'Ativar tema escuro' }).click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 
@@ -19,7 +23,12 @@ test.describe('Fase 5 — Produto', () => {
   test('possui formulário de newsletter', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByRole('heading', { name: /Newsletter/i })).toBeVisible();
-    await expect(page.getByLabel('E-mail para newsletter')).toBeVisible();
+    await expect(page.getByLabel(/newsletter/i)).toBeVisible();
+  });
+
+  test('exibe seção de comentários em artigo', async ({ page }) => {
+    await page.goto('/noticia/eua-tarifas-25-brasil-reciprocidade-marco-lastimavel');
+    await expect(page.getByRole('region', { name: /Comentários|Comments/i })).toBeVisible();
   });
 
   test('feed RSS é válido após build', async ({ request }) => {

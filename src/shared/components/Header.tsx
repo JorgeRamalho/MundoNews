@@ -1,13 +1,25 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { NAV_LINKS_BRANDED } from '@js/brand';
+import { useTranslation } from 'react-i18next';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
+
+const NAV_ITEMS = [
+  { path: '/', key: 'nav.home', emoji: '🏠' },
+  { path: '/brasil', key: 'nav.brazil', emoji: '🇧🇷' },
+  { path: '/mundo', key: 'nav.world', emoji: '🌎' },
+  { path: '/opiniao', key: 'nav.opinion', emoji: '💬' },
+  { path: '/esporte', key: 'nav.sports', emoji: '⚽' },
+  { path: '/artigos', key: 'nav.articles', emoji: '📄' },
+  { path: '/sobre', key: 'nav.about', emoji: 'ℹ️' },
+] as const;
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   return (
     <header className="header">
@@ -16,9 +28,9 @@ export default function Header() {
 
         <nav
           className={`header__nav${menuOpen ? ' header__nav--open' : ''}`}
-          aria-label="Navegação principal"
+          aria-label={t('nav.main')}
         >
-          {NAV_LINKS_BRANDED.map((link) => (
+          {NAV_ITEMS.map((link) => (
             <Link
               key={link.path}
               to={link.path}
@@ -26,18 +38,19 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
             >
               <span className="header__nav-emoji" aria-hidden="true">{link.emoji}</span>
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
         </nav>
 
         <div className="header__actions">
           <SearchBar />
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             className="header__menu-btn"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
             aria-expanded={menuOpen}
           >
             {menuOpen ? '✕' : '☰'}

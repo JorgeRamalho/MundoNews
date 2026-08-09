@@ -37,6 +37,9 @@
 - **Busca full-text** por título, resumo, autor e tags
 - **Dark mode** com preferência salva no navegador
 - **Feed RSS** (`/feed.xml`) e newsletter no footer
+- **CMS headless** (Sanity ou Contentful) — ver [docs/CMS-SETUP.md](docs/CMS-SETUP.md)
+- **Comentários** via Giscus (GitHub Discussions)
+- **Internacionalização** PT / EN / ES no header
 - PWA manifest e ícones
 
 ## Como executar

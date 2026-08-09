@@ -142,27 +142,17 @@ src/
 
 ---
 
-## Fase 5 — Evolução do produto (em andamento)
+## Fase 5 — Evolução do produto ✅
 
-| Item | Esforço | Valor | Status |
-|------|---------|-------|--------|
-| CMS headless (Sanity, Contentful) | Alto | Alto | Backlog |
-| Busca full-text | Médio | Alto | ✅ Concluído |
-| Newsletter / RSS feed | Médio | Médio | ✅ Concluído |
-| Dark mode | Baixo | Médio | ✅ Concluído |
-| Comentários (Disqus, giscus) | Baixo | Baixo | Backlog |
-| Analytics (Plausible, GA4) | Baixo | Alto | ✅ Infra pronta (env vars) |
-| Internacionalização EN/ES | Alto | Médio | Backlog |
-
-### 5.1 Entregas desta iteração
-
-- [x] `searchArticles()` + página `/busca?q=`
-- [x] `SearchBar` no header
-- [x] `ThemeProvider` + toggle claro/escuro
-- [x] `feed.xml` gerado no build (RSS 2.0)
-- [x] `NewsletterSignup` no footer
-- [x] `Analytics` com `VITE_PLAUSIBLE_DOMAIN` / `VITE_GA_MEASUREMENT_ID`
-- [x] Testes Playwright (`search.spec.ts`, `phase5.spec.ts`)
+| Item | Status |
+|------|--------|
+| CMS headless (Sanity + Contentful) | ✅ Infra + build sync |
+| Busca full-text | ✅ Concluído |
+| Newsletter / RSS feed | ✅ Concluído |
+| Dark mode | ✅ Concluído |
+| Comentários (giscus) | ✅ Infra via env vars |
+| Analytics (Plausible, GA4) | ✅ Infra via env vars |
+| Internacionalização EN/ES | ✅ PT / EN / ES |
 
 ---
 

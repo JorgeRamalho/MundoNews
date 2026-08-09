@@ -1,11 +1,20 @@
 import { Link } from 'react-router-dom';
-import { BRAND, BRAND_EMOJI, NAV_LINKS_BRANDED } from '@js/brand';
+import { useTranslation } from 'react-i18next';
+import { BRAND, BRAND_EMOJI } from '@js/brand';
 import Logo from './Logo';
 import NewsletterSignup from './NewsletterSignup';
 
+const SECTION_LINKS = [
+  { path: '/brasil', key: 'nav.brazil', emoji: '🇧🇷' },
+  { path: '/mundo', key: 'nav.world', emoji: '🌎' },
+  { path: '/opiniao', key: 'nav.opinion', emoji: '💬' },
+  { path: '/esporte', key: 'nav.sports', emoji: '⚽' },
+  { path: '/artigos', key: 'nav.articles', emoji: '📄' },
+] as const;
+
 export default function Footer() {
   const year = new Date().getFullYear();
-  const sections = NAV_LINKS_BRANDED.filter((l) => l.path !== '/' && l.path !== '/sobre');
+  const { t } = useTranslation();
 
   return (
     <footer className="footer">
@@ -21,31 +30,31 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="footer__heading">{BRAND_EMOJI.globe} Seções</h3>
-            {sections.map((link) => (
+            <h3 className="footer__heading">{BRAND_EMOJI.globe} {t('footer.sections')}</h3>
+            {SECTION_LINKS.map((link) => (
               <Link key={link.path} to={link.path} className="footer__link">
-                {link.emoji} {link.label}
+                {link.emoji} {t(link.key)}
               </Link>
             ))}
           </div>
 
           <div>
-            <h3 className="footer__heading">{BRAND_EMOJI.ethics} Institucional</h3>
-            <Link to="/sobre" className="footer__link">ℹ️ Sobre nós</Link>
-            <Link to="/sobre" className="footer__link">{BRAND_EMOJI.truth} Código de ética</Link>
-            <Link to="/sobre" className="footer__link">{BRAND_EMOJI.team} Nossa equipe</Link>
+            <h3 className="footer__heading">{BRAND_EMOJI.ethics} {t('footer.institutional')}</h3>
+            <Link to="/sobre" className="footer__link">ℹ️ {t('footer.about')}</Link>
+            <Link to="/sobre" className="footer__link">{BRAND_EMOJI.truth} {t('footer.ethics')}</Link>
+            <Link to="/sobre" className="footer__link">{BRAND_EMOJI.team} {t('footer.team')}</Link>
           </div>
 
           <div>
-            <h3 className="footer__heading">{BRAND_EMOJI.email} Contato</h3>
+            <h3 className="footer__heading">{BRAND_EMOJI.email} {t('footer.contact')}</h3>
             <a href={`mailto:${BRAND.email}`} className="footer__link">{BRAND.email}</a>
             <span className="footer__link">{BRAND_EMOJI.location} Curitiba — Paraná</span>
-            <a href="/feed.xml" className="footer__link">{BRAND_EMOJI.news} Feed RSS</a>
+            <a href="/feed.xml" className="footer__link">{BRAND_EMOJI.news} {t('footer.rss')}</a>
           </div>
         </div>
 
         <div className="footer__bottom">
-          <span>© {year} {BRAND_EMOJI.globe} {BRAND.name}. Todos os direitos reservados.</span>
+          <span>© {year} {BRAND_EMOJI.globe} {BRAND.name}. {t('footer.rights')}</span>
           <span>{BRAND_EMOJI.truth} {BRAND.taglineWithEmoji}</span>
         </div>
       </div>

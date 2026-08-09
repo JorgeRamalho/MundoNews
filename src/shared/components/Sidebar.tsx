@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { getLatestArticles } from '../../features/news/data/news';
+import { getLatestArticles } from '../../features/news/data/article-repository';
 import { timeAgo } from '@js/utils';
 import { SIDEBAR_EDITORIAL_BLOCKS, MONITORED_SOURCES } from '@js/editorial';
 import { BRAND_EMOJI } from '@js/brand';

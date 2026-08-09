@@ -15,6 +15,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
     "types": ["node"],
     "baseUrl": ".",
     "paths": {
@@ -23,5 +24,5 @@
       "@css/*": ["src/styles/*"]
     }
   },
-  "include": ["src", "vite.config.ts", "html5", "tests", "playwright.config.ts"]
+  "include": ["src", "scripts", "vite.config.ts", "html5", "tests", "playwright.config.ts"]
 }

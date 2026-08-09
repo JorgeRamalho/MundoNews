@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { normalizeInitialPath } from '@js/router';
 import { applyTheme, getInitialTheme } from '@js/theme';
+import './i18n';
 import AppRouter from './shared/components/AppRouter';
 import App from './App';
 import '@css/style.css';

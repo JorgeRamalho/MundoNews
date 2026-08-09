@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { getSportsArticles } from '../data/news';
+import { getSportsArticles } from '../data/article-repository';
 import { timeAgo } from '@js/utils';
 import { BRAND_EMOJI } from '@js/brand';
 

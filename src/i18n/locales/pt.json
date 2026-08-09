@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Início",
+    "brazil": "Brasil",
+    "world": "Mundo",
+    "opinion": "Opinião",
+    "sports": "Esporte",
+    "articles": "Artigos",
+    "about": "Sobre",
+    "main": "Navegação principal",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "search": "Buscar notícias",
+    "searchSubmit": "Enviar busca",
+    "goToSearch": "Ir para busca"
+  },
+  "lang": {
+    "label": "Idioma",
+    "pt": "Português",
+    "en": "English",
+    "es": "Español"
+  },
+  "hero": {
+    "eyebrow": "Jornalismo independente",
+    "cta": "Conheça nossa missão"
+  },
+  "home": {
+    "featured": "Destaque",
+    "latest": "Últimas notícias",
+    "editorial": "Editorial do Site"
+  },
+  "search": {
+    "title": "Buscar notícias",
+    "resultsFor": "Resultados para “{{query}}”",
+    "found_one": "{{count}} matéria encontrada.",
+    "found_other": "{{count}} matérias encontradas.",
+    "hint": "Digite um termo no campo de busca do cabeçalho para encontrar matérias.",
+    "empty": "Nenhuma matéria encontrada para “{{query}}”.",
+    "tryOther": "Tente outros termos ou navegue pelas",
+    "sections": "seções do portal",
+    "useHeader": "Use o campo de busca no topo do site para pesquisar notícias."
+  },
+  "article": {
+    "notFoundTitle": "Matéria não encontrada",
+    "notFoundDescription": "A notícia que você procura não existe ou foi removida.",
+    "backHome": "Voltar ao início",
+    "by": "Por",
+    "tags": "Tags:",
+    "backToNews": "Voltar às notícias",
+    "breaking": "Urgente",
+    "contentLanguage": "Conteúdo original em português."
+  },
+  "category": {
+    "empty": "Nenhuma notícia encontrada nesta seção.",
+    "brasil": "Brasil",
+    "mundo": "Mundo",
+    "opiniao": "Opinião",
+    "esporte": "Esporte",
+    "artigo": "Artigos",
+    "breaking": "Urgente",
+    "desc": {
+      "brasil": "Os principais fatos e acontecimentos do Brasil, com reportagens verificadas e contexto.",
+      "mundo": "Notícias internacionais das principais capitais do mundo, em tempo real.",
+      "opiniao": "Análises e reflexões de nossos editores e correspondentes sobre os fatos do dia.",
+      "esporte": "Copa do Mundo, futebol e bastidores do esporte — com fatos, dados e separação clara entre acusação e prova.",
+      "artigo": "Reportagens especiais, histórias em profundidade e conteúdo editorial exclusivo."
+    }
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "A página que você procura não existe ou foi movida.",
+    "backHome": "Voltar ao início"
+  },
+  "footer": {
+    "sections": "Seções",
+    "institutional": "Institucional",
+    "about": "Sobre nós",
+    "ethics": "Código de ética",
+    "team": "Nossa equipe",
+    "contact": "Contato",
+    "rss": "Feed RSS",
+    "rights": "Todos os direitos reservados."
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "text": "Receba os destaques do dia no seu e-mail. Sem spam — só fatos verificados.",
+    "emailLabel": "E-mail para newsletter",
+    "placeholder": "seu@email.com",
+    "submit": "Inscrever-se",
+    "invalidEmail": "Informe um e-mail válido.",
+    "success": "Obrigado! Você está inscrito para receber as principais notícias do Mundo News.",
+    "orRss": "Ou assine o",
+    "rssLink": "feed RSS"
+  },
+  "comments": {
+    "title": "Comentários",
+    "notConfigured": "Comentários disponíveis em breve. Configure o Giscus no arquivo .env para ativar.",
+    "loading": "Carregando comentários…"
+  },
+  "ticker": {
+    "label": "Notícias urgentes",
+    "urgent": "Urgente"
+  },
+  "cms": {
+    "usingStatic": "Conteúdo estático",
+    "usingCms": "Conteúdo via {{provider}}"
+  },
+  "common": {
+    "searchPlaceholder": "Buscar…"
+  }
+}

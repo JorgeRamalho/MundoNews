@@ -1,35 +1,37 @@
 import { useParams, Link } from 'react-router-dom';
-import { getArticleBySlug } from '../data/news';
+import { useTranslation } from 'react-i18next';
+import { getArticleBySlug } from '../data/article-repository';
 import PageMeta from '../../../shared/components/PageMeta';
+import GiscusComments from '../../../shared/components/GiscusComments';
 import {
   formatDateTime,
-  getCategoryLabel,
   getCategoryBadgeClass,
 } from '@js/utils';
 import { breadcrumbJsonLd, newsArticleJsonLd } from '@js/seo';
 import { CATEGORY_ROUTES } from '@js/constants';
+import { localeToBcp47 } from '../../../i18n';
 
 export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>();
+  const { t, i18n } = useTranslation();
   const article = slug ? getArticleBySlug(slug) : undefined;
+  const locale = localeToBcp47(i18n.language);
 
   if (!article) {
     return (
       <>
         <PageMeta
-          title="Matéria não encontrada"
-          description="A notícia que você procura não existe ou foi removida."
+          title={t('article.notFoundTitle')}
+          description={t('article.notFoundDescription')}
           path={`/noticia/${slug ?? ''}`}
           noIndex
         />
         <main className="page__main">
           <div className="container not-found">
             <div className="not-found__code">404</div>
-            <h1 className="not-found__title">Matéria não encontrada</h1>
-            <p className="not-found__text">
-              A notícia que você procura não existe ou foi removida.
-            </p>
-            <Link to="/" className="btn btn--primary">Voltar ao início</Link>
+            <h1 className="not-found__title">{t('article.notFoundTitle')}</h1>
+            <p className="not-found__text">{t('article.notFoundDescription')}</p>
+            <Link to="/" className="btn btn--primary">{t('article.backHome')}</Link>
           </div>
         </main>
       </>
@@ -39,7 +41,7 @@ export default function ArticlePage() {
   const paragraphs = article.content.split('\n\n').filter(Boolean);
   const path = `/noticia/${article.slug}`;
   const categoryPath = CATEGORY_ROUTES[article.category] ?? '/';
-  const categoryLabel = getCategoryLabel(article.category);
+  const categoryLabel = t(`category.${article.category}`);
 
   return (
     <>
@@ -56,7 +58,7 @@ export default function ArticlePage() {
         jsonLd={[
           newsArticleJsonLd(article, path),
           breadcrumbJsonLd([
-            { name: 'Início', path: '/' },
+            { name: t('nav.home'), path: '/' },
             { name: categoryLabel, path: categoryPath },
             { name: article.title, path },
           ]),
@@ -64,22 +66,26 @@ export default function ArticlePage() {
       />
       <main className="page__main">
         <article className="container" style={{ maxWidth: '800px' }}>
+          {i18n.language !== 'pt' && (
+            <p className="article-lang-notice">{t('article.contentLanguage')}</p>
+          )}
+
           <header className="article-header">
             <div style={{ marginBottom: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               <span className={getCategoryBadgeClass(article.category)}>
-                {getCategoryLabel(article.category)}
+                {categoryLabel}
               </span>
               {article.isBreaking && (
-                <span className="badge badge--breaking">Urgente</span>
+                <span className="badge badge--breaking">{t('article.breaking')}</span>
               )}
             </div>
 
             <h1 className="article-header__title">{article.title}</h1>
 
             <div className="article-header__meta">
-              <span>Por <strong>{article.author}</strong> — {article.authorRole}</span>
+              <span>{t('article.by')} <strong>{article.author}</strong> — {article.authorRole}</span>
               <time dateTime={article.publishedAt}>
-                {formatDateTime(article.publishedAt)}
+                {formatDateTime(article.publishedAt, locale)}
               </time>
             </div>
           </header>
@@ -126,7 +132,7 @@ export default function ArticlePage() {
           {article.tags.length > 0 && (
             <div style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid var(--color-border)' }}>
               <span style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginRight: '0.5rem' }}>
-                Tags:
+                {t('article.tags')}
               </span>
               {article.tags.map((tag) => (
                 <span
@@ -147,8 +153,10 @@ export default function ArticlePage() {
           )}
 
           <div style={{ marginTop: '2rem' }}>
-            <Link to="/" className="btn btn--outline">← Voltar às notícias</Link>
+            <Link to="/" className="btn btn--outline">← {t('article.backToNews')}</Link>
           </div>
+
+          <GiscusComments slug={article.slug} />
         </article>
       </main>
     </>

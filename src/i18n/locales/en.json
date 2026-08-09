@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Home",
+    "brazil": "Brazil",
+    "world": "World",
+    "opinion": "Opinion",
+    "sports": "Sports",
+    "articles": "Articles",
+    "about": "About",
+    "main": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "search": "Search news",
+    "searchSubmit": "Submit search",
+    "goToSearch": "Go to search"
+  },
+  "lang": {
+    "label": "Language",
+    "pt": "Portuguese",
+    "en": "English",
+    "es": "Spanish"
+  },
+  "hero": {
+    "eyebrow": "Independent journalism",
+    "cta": "Discover our mission"
+  },
+  "home": {
+    "featured": "Featured",
+    "latest": "Latest news",
+    "editorial": "Site editorial"
+  },
+  "search": {
+    "title": "Search news",
+    "resultsFor": "Results for “{{query}}”",
+    "found_one": "{{count}} article found.",
+    "found_other": "{{count}} articles found.",
+    "hint": "Type a term in the header search field to find articles.",
+    "empty": "No articles found for “{{query}}”.",
+    "tryOther": "Try other terms or browse the",
+    "sections": "site sections",
+    "useHeader": "Use the search field at the top of the site to search for news."
+  },
+  "article": {
+    "notFoundTitle": "Article not found",
+    "notFoundDescription": "The article you are looking for does not exist or has been removed.",
+    "backHome": "Back to home",
+    "by": "By",
+    "tags": "Tags:",
+    "backToNews": "Back to news",
+    "breaking": "Breaking",
+    "contentLanguage": "Original content in Portuguese."
+  },
+  "category": {
+    "empty": "No articles found in this section.",
+    "brasil": "Brazil",
+    "mundo": "World",
+    "opiniao": "Opinion",
+    "esporte": "Sports",
+    "artigo": "Articles",
+    "breaking": "Breaking",
+    "desc": {
+      "brasil": "Key facts and events from Brazil, with verified reporting and context.",
+      "mundo": "International news from major world capitals, in real time.",
+      "opiniao": "Analysis and reflections from our editors and correspondents on the day's events.",
+      "esporte": "World Cup, football and sports behind the scenes — facts, data and clear separation between allegation and proof.",
+      "artigo": "Special reports, in-depth stories and exclusive editorial content."
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to home"
+  },
+  "footer": {
+    "sections": "Sections",
+    "institutional": "Institutional",
+    "about": "About us",
+    "ethics": "Code of ethics",
+    "team": "Our team",
+    "contact": "Contact",
+    "rss": "RSS feed",
+    "rights": "All rights reserved."
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "text": "Receive the day's highlights in your inbox. No spam — only verified facts.",
+    "emailLabel": "Email for newsletter",
+    "placeholder": "you@email.com",
+    "submit": "Subscribe",
+    "invalidEmail": "Please enter a valid email.",
+    "success": "Thank you! You are subscribed to receive Mundo News highlights.",
+    "orRss": "Or subscribe to the",
+    "rssLink": "RSS feed"
+  },
+  "comments": {
+    "title": "Comments",
+    "notConfigured": "Comments coming soon. Configure Giscus in the .env file to enable.",
+    "loading": "Loading comments…"
+  },
+  "ticker": {
+    "label": "Breaking news",
+    "urgent": "Breaking"
+  },
+  "cms": {
+    "usingStatic": "Static content",
+    "usingCms": "Content via {{provider}}"
+  },
+  "common": {
+    "searchPlaceholder": "Search…"
+  }
+}

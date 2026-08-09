@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { usePortugueseLocale } from './test-utils';
 
 const ARTICLE_SLUG = 'eua-tarifas-25-brasil-reciprocidade-marco-lastimavel';
 
 test.describe('Artigo', () => {
   test.beforeEach(async ({ page }) => {
+    await usePortugueseLocale(page);
     await page.goto(`/noticia/${ARTICLE_SLUG}`);
   });
 
@@ -43,7 +45,7 @@ test.describe('Artigo', () => {
   });
 
   test('permite voltar à home', async ({ page }) => {
-    await page.getByRole('link', { name: /Voltar às notícias/ }).click();
+    await page.getByRole('link', { name: /Voltar às notícias|Back to news/i }).click();
     await expect(page).toHaveURL('/');
     await expect(page.getByRole('heading', { level: 1 })).toContainText(
       'Os fatos do Brasil e do mundo',

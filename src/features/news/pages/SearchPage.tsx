@@ -1,26 +1,24 @@
 import { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import NewsCard from '../components/NewsCard';
 import Sidebar from '../../../shared/components/Sidebar';
 import PageMeta from '../../../shared/components/PageMeta';
-import { searchArticles } from '../data/news';
+import { searchArticles } from '../data/article-repository';
 import { BRAND_EMOJI } from '@js/brand';
 
 export default function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q')?.trim() ?? '';
+  const { t } = useTranslation();
 
   const results = useMemo(() => searchArticles(query), [query]);
-
-  const description = query
-    ? `Resultados da busca por "${query}" no ${BRAND_EMOJI.news} Mundo News.`
-    : 'Busque notícias por título, resumo, autor ou tags.';
 
   return (
     <>
       <PageMeta
-        title={query ? `Busca: ${query}` : 'Buscar notícias'}
-        description={description}
+        title={query ? `${t('search.title')}: ${query}` : t('search.title')}
+        description={query ? t('search.resultsFor', { query }) : t('search.hint')}
         path={query ? `/busca?q=${encodeURIComponent(query)}` : '/busca'}
         noIndex={Boolean(query)}
       />
@@ -29,12 +27,13 @@ export default function SearchPage() {
           <div>
             <header className="category-header">
               <h1 className="category-header__title">
-                {BRAND_EMOJI.search} {query ? `Resultados para “${query}”` : 'Buscar notícias'}
+                {BRAND_EMOJI.search}{' '}
+                {query ? t('search.resultsFor', { query }) : t('search.title')}
               </h1>
               <p className="category-header__description">
                 {query
-                  ? `${results.length} ${results.length === 1 ? 'matéria encontrada' : 'matérias encontradas'}.`
-                  : 'Digite um termo no campo de busca do cabeçalho para encontrar matérias.'}
+                  ? t('search.found', { count: results.length })
+                  : t('search.hint')}
               </p>
             </header>
 
@@ -48,17 +47,17 @@ export default function SearchPage() {
 
             {query && results.length === 0 && (
               <div className="search-empty">
-                <p>Nenhuma matéria encontrada para &ldquo;{query}&rdquo;.</p>
+                <p>{t('search.empty', { query })}</p>
                 <p>
-                  Tente outros termos ou navegue pelas{' '}
-                  <Link to="/brasil">seções do portal</Link>.
+                  {t('search.tryOther')}{' '}
+                  <Link to="/brasil">{t('search.sections')}</Link>.
                 </p>
               </div>
             )}
 
             {!query && (
               <div className="search-empty">
-                <p>Use o campo de busca no topo do site para pesquisar notícias.</p>
+                <p>{t('search.useHeader')}</p>
               </div>
             )}
           </div>

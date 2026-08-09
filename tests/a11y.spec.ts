@@ -1,8 +1,13 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import type { Result } from 'axe-core';
+import { usePortugueseLocale } from './test-utils';
 
 test.describe('Acessibilidade', () => {
+  test.beforeEach(async ({ page }) => {
+    await usePortugueseLocale(page);
+  });
+
   test('home sem violações críticas', async ({ page }) => {
     await page.goto('/');
 
@@ -34,7 +39,9 @@ test.describe('Acessibilidade', () => {
   test('ticker não usa role marquee', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('[role="marquee"]')).toHaveCount(0);
-    await expect(page.getByRole('region', { name: 'Notícias urgentes' })).toBeVisible();
+    await expect(
+      page.getByRole('region', { name: /Notícias urgentes|Breaking news/i }),
+    ).toBeVisible();
   });
 
   test('footer possui link mailto', async ({ page }) => {
